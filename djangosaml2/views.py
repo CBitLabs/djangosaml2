@@ -195,6 +195,7 @@ def login(request,
     logger.debug('Redirecting user to the IdP via %s binding.', binding)
     if binding == BINDING_HTTP_REDIRECT:
         try:
+            nsprefix = get_namespace_prefixes()
             session_id, result = client.prepare_for_authenticate(
                 entityid=selected_idp, relay_state=came_from,
                 binding=binding, sign=False, sign_alg=sigalg, digest_alg=digalg,
